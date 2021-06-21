@@ -1,0 +1,743 @@
+using System;
+
+using System.Collections.Generic;
+
+
+
+
+
+public class Jogador
+
+{
+
+    public string nome;
+
+    public string cabelo;
+
+    public int nivel;
+
+    public int Ouro;
+
+    public List<Item> Itens = new List<Item>();
+
+}
+
+
+
+public class Item
+
+{
+
+    public string Nome;
+
+    public int Id;
+
+    public int Valor;
+
+}
+
+public class Sangue_De_Jesus_Tem_Poder
+
+{
+
+
+
+    static List<Jogador> Players = new List<Jogador>();
+
+
+
+    public static void Main(string[] args)
+
+    {
+
+
+
+
+
+        bool menuJogo = true;
+
+        while (menuJogo)
+
+        {
+
+            menuJogo = telaEscolhas();
+
+        }
+
+    }
+
+
+
+
+
+    private static bool telaEscolhas()
+
+    {
+
+
+
+        Item EspadaA = new Item();
+
+        EspadaA.Id = 01;
+
+        EspadaA.Nome = "Espada de Madeira";
+
+        EspadaA.Valor = 20;
+
+
+
+        Item PeitinA = new Item();
+
+        PeitinA.Id = 10;
+
+        PeitinA.Nome = "Couraca de pano";
+
+        PeitinA.Valor = 50;
+
+
+
+        Item EscudoA = new Item();
+
+        EscudoA.Id = 20;
+
+        EscudoA.Nome = "Escudo de Madeira";
+
+        EscudoA.Valor = 15;
+
+
+
+        Item ArquinA = new Item();
+
+        ArquinA.Id = 30;
+
+        ArquinA.Nome = "Arco de Treino";
+
+        ArquinA.Valor = 40;
+
+
+
+        Item SucoA = new Item();
+
+        SucoA.Id = 60;
+
+        SucoA.Nome = "Pocao de cura";
+
+        SucoA.Valor = 20;
+
+
+
+        Item FlechinA = new Item();
+
+        FlechinA.Id = 70;
+
+        FlechinA.Nome = "Flecha";
+
+        FlechinA.Valor = 5;
+
+
+
+
+
+        Console.Clear();
+
+        Console.WriteLine("Digite '1' para criar um personagem novo.");
+
+        Console.WriteLine("Digite '2' para ver a lista de personagens criados.");
+
+        Console.WriteLine("Digite '3' para olhar os itens de algum Personagem.");
+
+        Console.WriteLine("Digite '4' para ir as compras.");
+
+        Console.WriteLine("Digite '5' para sair.");
+
+
+
+        switch (Console.ReadLine())
+
+        {
+
+            case "1":
+
+
+
+                Console.Clear();
+
+
+
+                Console.Write("Digite o nome do personagem: ");
+
+                var np = Console.ReadLine();
+
+
+
+                Console.Write("Digite a cor do cabelo: ");
+
+                var CL = Console.ReadLine();
+
+
+
+                Console.Write("Digite o nivel do personagem: ");
+
+                var xpP = Console.ReadLine();
+
+
+
+                Random randNum = new Random();
+
+                var grana = randNum.Next(20, 120);
+
+
+
+
+
+                Players.Add(new Jogador { nome = np, nivel = Convert.ToInt32(xpP), Ouro = grana });
+
+                Console.Clear();
+
+
+
+                Console.WriteLine("Personagem criado!");
+
+                Console.WriteLine("");
+
+                Console.WriteLine("Sua quantidade de ouro: " + grana);
+
+                Console.WriteLine("Digite 'ENTER' para voltar ao menu...");
+
+                Console.ReadLine();
+
+                return true;
+
+
+
+            case "2":
+
+                Console.Clear();
+
+
+
+                Console.WriteLine("Personagens criados:");
+
+
+
+                for (int A = 0; A < Players.Count; A++)
+
+                {
+
+                    Console.WriteLine("");
+
+                    Console.WriteLine("Nome : " + Players[A].nome);
+
+                    Console.WriteLine("Cabelo : " + Players[A].cabelo);
+
+                    Console.WriteLine("Nivel : " + Players[A].nivel);
+
+                    Console.WriteLine("Ouro : " + Players[A].Ouro);
+
+                    Console.WriteLine("");
+
+                }
+
+
+
+                for (int A = 1; A > Players.Count;)
+
+                {
+
+                    Console.WriteLine("");
+
+                    Console.WriteLine("Não foi possive encontrar nenhum jogador :( ");
+
+                }
+
+
+
+                Console.WriteLine("");
+
+                Console.WriteLine("Digite 'ENTER' para voltar ao menu...");
+
+                Console.ReadKey();
+
+
+
+                return true;
+
+
+
+            case "3":
+
+                Console.Clear();
+
+                Console.WriteLine("Digite o nome do jogador para verificar o iventário:");
+
+                var iN = Console.ReadLine();
+
+                foreach (Jogador G in Players)
+
+                {
+
+                    if (G.nome == iN)
+
+                    {
+
+                        Console.WriteLine("Itens:");
+
+                        Console.WriteLine("");
+
+                        for (int i = 0; i < G.Itens.Count; i++)
+
+                        {
+
+                            Console.WriteLine("Item: " + G.Itens[i].Nome);
+
+                        }
+
+                        Console.WriteLine("Digite 'ENTER' para voltar ao menu...");
+
+                        Console.ReadLine();
+
+                    }
+
+                    else
+
+                    {
+
+                        Console.Clear();
+
+                        Console.WriteLine("Não foi possive encontrar nenhum jogador :( ");
+
+                        Console.ReadLine();
+
+                    }
+
+                }
+
+                return true;
+
+
+
+            case "4":
+
+                Console.Clear();
+
+                Console.WriteLine("Digite o nome do jogador que irá acessar a loja: ");
+
+                iN = Console.ReadLine();
+
+                foreach (Jogador p in Players)
+
+                {
+
+                    if (p.nome == iN)
+
+                    {
+
+                        Console.WriteLine("Caloteiro`s shoppe");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("Olá pessoa! sou Seu Jorje, bem vindo a minha loja de equipamentos. Fique a vontade!");
+
+                        Console.WriteLine("Para comprar algo, digite o codigo do item");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("01 - Espada de Madeira");
+
+                        Console.WriteLine("'Uma espada simples e afiada feita de madeira,'");
+
+                        Console.WriteLine("Valor: R$20");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("10 - Couraca de pano");
+
+                        Console.WriteLine("'Uma couraca feita de pano tecido por idosas mutio carinhosas.'");
+
+                        Console.WriteLine("Valor: R$50");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("20 - Escudo de madeira");
+
+                        Console.WriteLine("'Um escudo de madeira feito com arames e pregos.'");
+
+                        Console.WriteLine("Valor: R$15");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("30 - Arco de Treino");
+
+                        Console.WriteLine("'Um arco comum, feito para iniciantes em arquearia.'");
+
+                        Console.WriteLine("Valor: R$40");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("60 - Pocao de cura");
+
+                        Console.WriteLine("'Uma pocao avermelhada, revigora a vida de quem a tomar.'");
+
+                        Console.WriteLine("Valor: R$20");
+
+                        Console.WriteLine("");
+
+                        Console.WriteLine("70 - Flecha");
+
+                        Console.WriteLine("'Flecha comum com ponta seca.'");
+
+                        Console.WriteLine("Valor: R$5");
+
+                        Console.WriteLine("");
+
+                        var ic = Console.ReadLine();
+
+                        switch (ic)
+
+                        {
+
+                            case "01":
+
+                                Console.WriteLine("Vai uma espada de madeira? sao 20 ouros (S)/(N)");
+
+                                Console.WriteLine("Seu ouro:" + p.Ouro);
+
+                                var resp = Console.ReadLine();
+
+                                if (resp == "S")
+
+                                {
+
+                                    if (p.Ouro >= EspadaA.Valor)
+
+                                    {
+
+                                        p.Ouro = p.Ouro - EspadaA.Valor;
+
+                                        p.Itens.Add(EspadaA);
+
+                                        Console.Clear();
+
+                                        Console.WriteLine("Item adicionado ao inventario!");
+
+                                        Console.WriteLine("Valeu meu bom, volte sempre");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                    else
+
+                                    {
+
+                                        Console.WriteLine("Sem dinheiro sem item.");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                }
+
+                                else { }
+
+                                break;
+
+
+
+                            case "10":
+
+                                Console.WriteLine("Vai uma Couraca de Pano? custa 50 ouros. (S)/(N)");
+
+                                Console.WriteLine("Seu ouro:" + p.Ouro);
+
+
+
+                                resp = Console.ReadLine();
+
+                                if (resp == "S")
+
+                                {
+
+                                    if (p.Ouro >= PeitinA.Valor)
+
+                                    {
+
+                                        p.Ouro = p.Ouro - PeitinA.Valor;
+
+                                        p.Itens.Add(PeitinA);
+
+                                        Console.Clear();
+
+                                        Console.WriteLine("Item adicionado ao inventario!");
+
+                                        Console.WriteLine("Valeu meu bom, volte sempre");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                    else
+
+                                    {
+
+                                        Console.WriteLine("Sem dinheiro sem item.");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                }
+
+                                else { }
+
+                                break;
+
+
+
+                            case "20":
+
+                                Console.WriteLine("Vai um Escudo de Madeira? sao 15 ouros. (S)/(N)");
+
+                                Console.WriteLine("Seu ouro:" + p.Ouro);
+
+                                resp = Console.ReadLine();
+
+                                if (resp == "S")
+
+                                {
+
+                                    if (p.Ouro >= EscudoA.Valor)
+
+                                    {
+
+                                        p.Ouro = p.Ouro - EscudoA.Valor;
+
+                                        p.Itens.Add(EscudoA);
+
+                                        Console.Clear();
+
+                                        Console.WriteLine("Item adicionado ao inventario!");
+
+                                        Console.WriteLine("Valeu meu bom, volte sempre");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                    else
+
+                                    {
+
+                                        Console.WriteLine("Sem dinheiro sem item.");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                }
+
+                                else { }
+
+                                break;
+
+
+
+                            case "30":
+
+                                Console.WriteLine("Vai um arco de treino? sao 40 ouros. (S)/(N)");
+
+                                Console.WriteLine("Seu ouro:" + p.Ouro);
+
+                                resp = Console.ReadLine();
+
+                                if (resp == "S")
+
+                                {
+
+                                    if (p.Ouro >= ArquinA.Valor)
+
+                                    {
+
+                                        p.Ouro = p.Ouro - ArquinA.Valor;
+
+                                        p.Itens.Add(ArquinA);
+
+                                        Console.Clear();
+
+                                        Console.WriteLine("Item adicionado ao inventario!");
+
+                                        Console.WriteLine("Valeu meu bom, volte sempre");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                    else
+
+                                    {
+
+                                        Console.WriteLine("Sem dinheiro sem item.");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                }
+
+                                else { }
+
+                                break;
+
+
+
+                            case "60":
+
+                                Console.WriteLine("Vai uma pocao de cura? sao 20 ouros. (S)/(N)");
+
+                                Console.WriteLine("Seu ouro:" + p.Ouro);
+
+                                resp = Console.ReadLine();
+
+                                if (resp == "S")
+
+                                {
+
+                                    if (p.Ouro >= SucoA.Valor)
+
+                                    {
+
+                                        p.Ouro = p.Ouro - SucoA.Valor;
+
+                                        p.Itens.Add(SucoA);
+
+                                        Console.Clear();
+
+                                        Console.WriteLine("Item adicionado ao inventario!");
+
+                                        Console.WriteLine("Valeu meu bom, volte sempre");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                    else
+
+                                    {
+
+                                        Console.WriteLine("Sem dinheiro sem item.");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                }
+
+                                else { }
+
+                                break;
+
+
+
+                            case "70":
+
+                                Console.WriteLine("Vai uma flecha? sao 5 ouros. (S)/(N)");
+
+                                Console.WriteLine("Seu ouro:" + p.Ouro);
+
+                                resp = Console.ReadLine();
+
+                                if (resp == "S")
+
+                                {
+
+                                    if (p.Ouro >= FlechinA.Valor)
+
+                                    {
+
+                                        p.Ouro = p.Ouro - FlechinA.Valor;
+
+                                        p.Itens.Add(FlechinA);
+
+                                        Console.Clear();
+
+                                        Console.WriteLine("Item adicionado ao inventario!");
+
+                                        Console.WriteLine("Valeu meu bom, volte sempre");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                    else
+
+                                    {
+
+                                        Console.WriteLine("Sem dinheiro sem item.");
+
+                                        Console.ReadLine();
+
+                                    }
+
+                                }
+
+                                else { }
+
+                                break;
+
+
+
+                            default:
+
+                                Console.WriteLine("Nem pra fortalecer o Seu jorje aqui? comedia!");
+
+                                Console.ReadLine();
+
+                                break;
+
+                        }
+
+                    }
+
+                    else
+
+                    {
+
+                        Console.Clear();
+
+                        Console.WriteLine("Nenhum personagem encontrado... É necessário ter um personagem registrado pra comprar.");
+
+                        Console.WriteLine("Precione 'ENTER' para retornar ao menu...");
+
+                        Console.ReadLine();
+
+                    }
+
+                }
+
+                return true;
+
+
+
+            case "5":
+
+                return false;
+
+
+
+            default:
+
+                return true;
+
+
+
+        }
+
+    }
+
+
+
+
+
+}
